@@ -28,6 +28,8 @@ BUILD_FINGERPRINT := samsung/ks01ltexx/ks01lte:5.0.1/LRX22C/I9506XXUDRB1:user/re
 # Enable SVELTE memory configuration
 MALLOC_SVELTE := true
 
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
+
 # Kernel
 TARGET_KERNEL_CONFIG := lineage_ks01lte_defconfig
 
@@ -39,6 +41,7 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2390753280	  # Dont change it
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 12528352256
 
 # Properties
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # Include
@@ -47,8 +50,15 @@ TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/ks01lte-include
 # Init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_ks01lte
 
+TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
+    /system/vendor/bin/hw/android.hardware.sensors@1.0-service.samsung8974=22 \
+    /system/vendor/bin/hw/rild=27
+
 # NFC
 BOARD_NFC_HAL_SUFFIX := msm8974
+
+# Radio
+BOARD_PROVIDES_LIBRIL := true
 
 # NFC
 include $(COMMON_PATH)/nfc/bcm2079x/board.mk
