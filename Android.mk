@@ -23,43 +23,4 @@ include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
 
-
-# (SYMLINK FROM FIRMWARE/IMAGE)
-
-KEYMASTE_IMAGES := \
-    keymaste.b00 keymaste.b01 keymaste.b02 keymaste.b03 keymaste.mdt
-
-KEYMASTE_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(KEYMASTE_IMAGES)))
-$(KEYMASTE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "KEYMASTE firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /firmware/image/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(KEYMASTE_SYMLINKS)
-
-MC_IMAGES := \
-    mc_v2.b00 mc_v2.b01 mc_v2.b02 mc_v2.b03 mc_v2.mdt
-
-MC_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(MC_IMAGES)))
-$(MC_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "Mobicore firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /firmware/image/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(MC_SYMLINKS)
-
-PLAYREADY_IMAGES := \
-    playread.b00 playread.b01 playread.b02 playread.b03 playread.mdt
-
-PLAYREADY_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(PLAYREADY_IMAGES)))
-$(PLAYREADY_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "Playready firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /firmware/image/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(PLAYREADY_SYMLINKS)
-
 endif
