@@ -22,5 +22,5 @@ $(call inherit-product, device/samsung/ks01lte/device.mk)
 PRODUCT_NAME := full_ks01lte
 PRODUCT_DEVICE := ks01lte
 PRODUCT_BRAND := samsung
-PRODUCT_MANUFACTURER := samsung
+PRODUCT_MANUFACTURER := Google
 PRODUCT_MODEL := ks01lte
